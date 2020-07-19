@@ -1,0 +1,48 @@
+en:
+  errors:
+    code:
+      default: 1000
+      confirmation: 1001 # ActiveRecord Validation 1001 - 1049
+      accepted: 1002
+      blank: 1003
+      present: 1004
+      too_short: 1005
+      too_long: 1006
+      wrong_length: 1007
+      taken: 1008
+      invalid: 1009
+      inclusion: 1010
+      exclusion: 1011
+      required: 1012
+      not_a_number: 1013
+      greater_than: 1014
+      greater_than_or_equal_to: 1015
+      equal_to: 1016
+      less_than: 1017
+      less_than_or_equal_to: 1018
+      other_than: 1019
+      not_an_integer: 1020
+      odd: 1021
+      even: 1022
+    active_record: # Other ActiveRecord errors 1050 - 1199
+      not_unique:
+        code: 1050
+        message: Resource is existing.
+      not_found:
+        code: 1051
+        message: Resourse is not found.
+    params: # Request, Params, Controller, Action errors 1200 - 1299
+      invalid:
+        code: 1200
+        message: Invalid parameters.
+    route:
+      not_found:
+        code: 1299
+        message: Page not found.
+    action:
+      unauthorized:
+        code: 1201
+        message: Please log in.
+      not_allowed:
+        code: 1202
+        message: You are not allow to do this action
