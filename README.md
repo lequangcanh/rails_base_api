@@ -7,12 +7,12 @@ Môi trường:
 
 Các công việc cần làm:
 1. Tạo Rails app với option --api `rails new your_app --api`
-1. Update [Gemfile](/Gemfile), add một số gem cần thiết như: mysql2, config, dotenv-rails, rack-cors, active_model_serializers, pry-rails
-1. Config kết nối với database ở file [config/database.yml](/config/database.yml), nên set các giá trị ở biến môi trường.
-1. Tạo file quản lý biến môi trường, ở đây là file `.env`, ignore file này ra khỏi Git. Tạo file [.env.example](/.env.example) để quản lý các biến phải set trong project.
-1. Config rspec để viết UT:
+2. Update [Gemfile](/Gemfile), add một số gem cần thiết như: mysql2, config, dotenv-rails, rack-cors, active_model_serializers, pry-rails
+3. Config kết nối với database ở file [config/database.yml](/config/database.yml), nên set các giá trị ở biến môi trường.
+4. Tạo file quản lý biến môi trường, ở đây là file `.env`, ignore file này ra khỏi Git. Tạo file [.env.example](/.env.example) để quản lý các biến phải set trong project.
+5. Config rspec để viết UT:
 
-  Add thêm các Gem liên quan
+  * Add thêm các Gem liên quan
   ```ruby
   group :development, :test do
     gem "factory_bot_rails"
@@ -25,9 +25,9 @@ Các công việc cần làm:
   end
   ```
 
-  `bundle install` và run `rails generate rspec:install` để generate các file config
+  * `bundle install` và run `rails generate rspec:install` để generate các file config
 
-1. Add thêm các thư viện check convention, code style, ... nếu cần dùng
+6. Add thêm các thư viện check convention, code style, ... nếu cần dùng
 
   ```ruby
   group :development, :test do
@@ -39,8 +39,8 @@ Các công việc cần làm:
   end
   ```
 
-1. Nếu đã có design DB cơ bản, có thể generate một số model chính như User, Company, ...
-1. Thiết kế cấu trúc thư mục quản lý version (Ở đây sẽ quản lý version theo kiểu api/v1)
+7. Nếu đã có design DB cơ bản, có thể generate một số model chính như User, Company, ...
+8. Thiết kế cấu trúc thư mục quản lý version (Ở đây sẽ quản lý version theo kiểu api/v1)
   * Define routes:
   ```ruby
     Rails.application.routes.draw do
@@ -56,19 +56,18 @@ Các công việc cần làm:
   class Api::V1::BaseController < ApplicationController
   end
   ```
-
-1. Định nghĩa các success responses:
+9. Định nghĩa các success responses:
   * Cấu trúc success response có dạng:
   ```json
     {
       "success": true,
-      "data": {Sẽ trả về những data chính của request},
-      "meta": {Các data bổ trợ thêm, ví dụ như phân trang, ...}
+      "data": {"Sẽ trả về những data chính của request"},
+      "meta": {"Các data bổ trợ thêm, ví dụ như phân trang, ..."}
     }
   ```
   * Định nghĩa hàm `render_jsonapi` nhận một object, thông qua Active Model Serializer trả về response. Tham khảo: [app/controllers/concerns/api/v1/json_rendered.rb](/app/controllers/concerns/json_rendered.rb)
 
-1. Định nghĩa errors responses:
+10. Định nghĩa errors responses:
   * Cấu trúc errors responses có dạng:
   ```json
     {
@@ -91,7 +90,7 @@ Các công việc cần làm:
     * [app/serializers/record_not_found_serializer.rb](/app/serializers/record_not_found_serializer.rb)
     * [app/serializers/action_not_allowed_serializer.rb](/app/serializers/action_not_allowed_serializer.rb)
     * Define các errors message cơ bản [config/locales/errors.en.yml](/config/locales/ja.yml)
-1. Xử lý pagination response.
+11. Xử lý pagination response.
   * Ở đây sẽ viết dựa trên gem pagy, vì nó có module Pagy::Backend khá ngon. Define vào [app/controllers/concerns/api/v1/pagination.rb](/app/controllers/concerns/api/v1/pagination.rb).
   * Một số giá trị default trong settings
   ```yml
@@ -102,7 +101,7 @@ Các công việc cần làm:
       items_default: 30
       page_default: 1
   ```
-1. Cuối cùng include 3 cái modules trên vào base_controller để sử dụng
+12. Cuối cùng include 3 cái modules trên vào base_controller để sử dụng
   * Để cho đẹp thì tạo 1 cái base_concern nhét 3 cái modules này vào [app/controllers/concerns/api/v1/base_concern.rb](/app/controllers/concerns/api/v1/base_concern.rb)
   ```ruby
     module Api
